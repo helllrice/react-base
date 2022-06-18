@@ -1,12 +1,31 @@
 import React, { Component } from "react";
 import './App.css'
+import {Humans} from "./components/Humans";
 
 class App extends  Component {
     state = {
       count: 0,
       isCounting: false,
-      counter: 0
+      counter: 0,
+      humans: [
+          {name: 'vasil', age: 21, id: 0},
+          {name: 'Maxim', age: 21, id: 1},
+          {name: 'Vlad',  age: 19, id: 2}
+      ]
+
     };
+
+    removeHumans = (id) => {
+        this.setState({
+            humans: this.state.humans.filter(human => human.id !== id)
+        })
+    }
+
+    handleSomething = () => {
+        this.setState({
+
+        })
+    }
 
     componentDidMount() {
         const userCount = localStorage.getItem("timer");
@@ -62,6 +81,8 @@ class App extends  Component {
 
 
     render() {
+        const {humans} = this.state
+
         return (
             <div className="App">
                 <button onClick={this.increaseClick}>+</button>
@@ -76,6 +97,8 @@ class App extends  Component {
                 )}
                 <button onClick={this.timerReset}>Reset</button>
 
+                <h2>My brothers</h2>
+                <Humans humans={humans} removeHumans={this.removeHumans}/>
 
             </div>
         );
