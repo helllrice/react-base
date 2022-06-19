@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import './App.css'
 import {Humans} from "./components/Humans";
+import {Form} from "./components/Form";
 
 class App extends  Component {
     state = {
@@ -99,7 +100,7 @@ class App extends  Component {
 
                 <h2>My brothers</h2>
                 <Humans humans={humans} removeHumans={this.removeHumans}/>
-
+                <Form />
             </div>
         );
     }
