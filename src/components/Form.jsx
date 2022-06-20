@@ -4,6 +4,8 @@ class Form extends React.Component {
     state = {
         login: '',
         email: '',
+        subscription: false,
+        gender: ''
     }
 
     handleChange = (event) => {
@@ -24,8 +26,14 @@ class Form extends React.Component {
         }
     }
 
+    handleCheckboxChange = (event) => {
+        this.setState({
+            [event.target.name]: event.target.checked
+        })
+    }
+
     render() {
-        const {login , email} = this.state
+        const {login , email, subscription, gender} = this.state
 
         return <div>
             <input
@@ -36,6 +44,7 @@ class Form extends React.Component {
                 onChange={this.handleChange}
                 onBlur={this.validateName}
             />
+            <br/>
             <input
                 type="text"
                 name="email"
@@ -44,6 +53,26 @@ class Form extends React.Component {
                 onChange={this.handleChange}
                 onBlur={this.validateMail}
             />
+            <br/>
+            <input
+                type="checkbox"
+                name="subscription"
+                checked={subscription}
+                onChange={this.handleCheckboxChange}
+            />
+            <br/>
+            <input
+                type="radio"
+                name="gender"
+                value="male"
+                onChange={this.handleChange}
+                checked={gender === "male"}/> Male
+            <input
+                type="radio"
+                name="gender"
+                value="female"
+                onChange={this.handleChange}
+                checked={gender === "female"}/> Female
         </div>
     }
 }
